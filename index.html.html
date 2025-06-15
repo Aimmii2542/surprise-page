@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Thinking of You ❤️</title>
+<link
+    href="https://fonts.googleapis.com/css2?family=Mali:wght@400;700&family=Prompt:wght@400;700&display=swap"
+    rel="stylesheet"
+/>
+<style>
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #ff9999, #ff66cc);
+    font-family: 'Prompt', sans-serif;
+    color: #fff;
+    overflow: hidden;
+    position: relative;
+    animation: backgroundShift 20s ease-in-out infinite alternate;
+  }
+  @keyframes backgroundShift {
+    0% {
+      background: linear-gradient(135deg, #ff9999, #ff66cc);
+    }
+    50% {
+      background: linear-gradient(135deg, #ff66cc, #ff9999);
+    }
+    100% {
+      background: linear-gradient(135deg, #ff9999, #ff66cc);
+    }
+  }
+
+  .heart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    padding: 30px;
+    box-sizing: border-box;
+    max-width: 95%;
+    min-height: 80vh;
+    position: relative;
+  }
+
+  /* ลิงก์หัวใจ */
+  .heart-link {
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    filter: none;
+    user-select: none;
+    position: relative;
+    z-index: 20;
+  }
+
+  /* หัวใจหลัก */
+  .heart {
+    font-size: 10em;
+    color: #ff2a68;
+    animation: pulseGlow 1.5s ease-in-out infinite;
+    text-shadow:
+      0 0 8px #ff2a68,
+      0 0 20px #ff5a8f,
+      0 0 40px #ff2a68,
+      0 0 80px #ff5a8f;
+    transition: transform 0.3s ease, text-shadow 0.3s ease;
+    margin-bottom: 5px;
+    position: relative;
+    z-index: 20;
+    user-select: none;
+  }
+
+  /* shine effect รอบหัวใจ */
+  .heart::before {
+    content: '';
+    position: absolute;
+    top: -15%;
+    left: -15%;
+    width: 130%;
+    height: 130%;
+    border-radius: 50%;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.6), transparent 60%),
+      radial-gradient(circle at 70% 70%, rgba(255, 182, 193, 0.4), transparent 60%);
+    animation: shineRotate 4s linear infinite;
+    z-index: -1;
+  }
+
+  @keyframes shineRotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% {
+      transform: scale(1);
+      text-shadow:
+        0 0 8px #ff2a68,
+        0 0 20px #ff5a8f,
+        0 0 40px #ff2a68,
+        0 0 80px #ff5a8f;
+    }
+    50% {
+      transform: scale(1.12);
+      text-shadow:
+        0 0 15px #ff2a68,
+        0 0 35px #ff5a8f,
+        0 0 70px #ff2a68,
+        0 0 120px #ff5a8f;
+    }
+  }
+
+  /* hover ขยาย + หมุน */
+  .heart-link:hover .heart {
+    transform: scale(1.3) rotate(-7deg);
+    text-shadow:
+      0 0 25px #ff2a68,
+      0 0 50px #ff5a8f,
+      0 0 75px #ff2a68,
+      0 0 120px #ff5a8f;
+  }
+
+  /* คลิกประกาย sparkles */
+  .heart-link:active .heart {
+    animation: sparkleBurst 0.6s forwards;
+  }
+
+  @keyframes sparkleBurst {
+    0% {
+      filter: drop-shadow(0 0 0 #fff);
+      transform: scale(1.3) rotate(-7deg);
+      text-shadow:
+        0 0 25px #ff2a68,
+        0 0 50px #ff5a8f,
+        0 0 75px #ff2a68,
+        0 0 120px #ff5a8f;
+    }
+    50% {
+      filter:
+        drop-shadow(0 0 12px #fff)
+        drop-shadow(0 0 25px #ffc0cb)
+        drop-shadow(0 0 40px #fff);
+      transform: scale(1.5) rotate(-12deg);
+      text-shadow:
+        0 0 30px #ff2a68,
+        0 0 65px #ff5a8f,
+        0 0 100px #ff2a68,
+        0 0 150px #ff5a8f;
+    }
+    100% {
+      filter: drop-shadow(0 0 0 #fff);
+      transform: scale(1.3) rotate(-7deg);
+      text-shadow:
+        0 0 25px #ff2a68,
+        0 0 50px #ff5a8f,
+        0 0 75px #ff2a68,
+        0 0 120px #ff5a8f;
+    }
+  }
+
+  /* ข้อความใต้หัวใจ */
+  .heart-hint {
+    font-family: 'Mali', cursive;
+    font-size: 1em;
+    font-weight: 600;
+    color: #fff;
+    margin-top: 4px;
+    text-align: center;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+    user-select: none;
+    z-index: 15;
+  }
+
+  /* รูปภาพแบบ Grid */
+  .image-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 40px;
+    max-width: 700px;
+    width: 100%;
+    justify-items: center;
+    align-items: center;
+    z-index: 10;
+  }
+
+  .image-grid img {
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
+    border: 3px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out;
+    cursor: default;
+  }
+
+  .image-grid img:hover {
+    transform: scale(1.05);
+  }
+
+  .image-grid .bottom-row-center {
+    grid-column: 1 / span 3;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .image-grid .bottom-row-center img {
+    max-width: 45%;
+    height: 150px;
+  }
+
+  /* ข้อความวิ่ง */
+  .message-marquee {
+    font-family: 'Mali', cursive;
+    font-size: 2.5em;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 20px;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+    white-space: nowrap;
+    overflow: hidden;
+    box-sizing: border-box;
+    max-width: 100vw;
+    user-select: none;
+    z-index: 10;
+  }
+
+  .message-marquee span {
+    display: inline-block;
+    padding-left: 100vw;
+    animation: marquee 15s linear infinite;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  /* Particle effects */
+  .particle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.7);
+    animation: twinkle 2s infinite, moveParticles 10s linear infinite;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    z-index: 5;
+  }
+
+  @keyframes twinkle {
+    0%, 100% {
+      opacity: 0.5;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.3);
+    }
+  }
+
+  @keyframes moveParticles {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(100vw, 100vh);
+    }
+  }
+
+  /* ตำแหน่ง particle */
+  .particle:nth-child(1) {
+    top: 10%;
+    left: 15%;
+    animation-delay: 0.5s;
+    width: 8px;
+    height: 8px;
+  }
+
+  .particle:nth-child(2) {
+    top: 30%;
+    right: 10%;
+    animation-delay: 1s;
+    width: 10px;
+    height: 10px;
+  }
+
+  .particle:nth-child(3) {
+    bottom: 20%;
+    left: 25%;
+    animation-delay: 1.5s;
+    width: 7px;
+    height: 7px;
+  }
+
+  .particle:nth-child(4) {
+    top: 45%;
+    right: 30%;
+    animation-delay: 2s;
+    width: 9px;
+    height: 9px;
+  }
+
+  .particle:nth-child(5) {
+    bottom: 35%;
+    left: 5%;
+    animation-delay: 2.5s;
+    width: 12px;
+    height: 12px;
+  }
+
+  .particle:nth-child(6) {
+    top: 20%;
+    left: 40%;
+    animation-delay: 3s;
+    width: 6px;
+    height: 6px;
+  }
+
+  .particle:nth-child(7) {
+    bottom: 10%;
+    right: 15%;
+    animation-delay: 3.5s;
+    width: 11px;
+    height: 11px;
+  }
+
+  .particle:nth-child(8) {
+    top: 5%;
+    left: 55%;
+    animation-delay: 4s;
+    width: 8px;
+    height: 8px;
+  }
+
+  .particle:nth-child(9) {
+    bottom: 45%;
+    right: 25%;
+    animation-delay: 4.5s;
+    width: 7px;
+    height: 7px;
+  }
+
+  .particle:nth-child(10) {
+    top: 30%;
+    left: 10%;
+    animation-delay: 5s;
+    width: 10px;
+    height: 10px;
+  }
+
+  .particle:nth-child(11) {
+    top: 55%;
+    left: 5%;
+    animation-delay: 0.8s;
+    width: 9px;
+    height: 9px;
+  }
+
+  .particle:nth-child(12) {
+    top: 70%;
+    right: 20%;
+    animation-delay: 1.8s;
+    width: 6px;
+    height: 6px;
+  }
+
+  .particle:nth-child(13) {
+    bottom: 5%;
+    left: 60%;
+    animation-delay: 2.2s;
+    width: 10px;
+    height: 10px;
+  }
+
+  .particle:nth-child(14) {
+    top: 15%;
+    right: 5%;
+    animation-delay: 3.2s;
+    width: 7px;
+    height: 7px;
+  }
+
+  .particle:nth-child(15) {
+    bottom: 50%;
+    left: 40%;
+    animation-delay: 4.2s;
+    width: 8px;
+    height: 8px;
+  }
+</style>
+</head>
+<body>
+<audio id="background-music" autoplay loop>
+  <source src="เพลงรัก.mp3" type="audio/mpeg" />
+  เบราว์เซอร์ของคุณไม่รองรับการเล่นไฟล์เสียง
+</audio>
+
+<div class="heart-container">
+  <a
+    href="https://www.instagram.com/thewin_wonganan?igsh=NWszY2hvd2Z3bGxz"
+    target="_blank"
+    class="heart-link"
+    title="ไป Instagram พี่หวัน"
+    >
+    <div class="heart">❤️</div>
+  </a>
+  <div class="heart-hint">ลองกดตรงรูปหัวใจดูสิครับ</div>
+
+  <div class="image-grid">
+    <img src="Tawan1.jpg" alt="Tawan 1" />
+    <img src="Tawan2.jpg" alt="Tawan 2" />
+    <img src="Tawan3.jpg" alt="Tawan 3" />
+    <div class="bottom-row-center">
+      <img src="Tawan4.jpg" alt="Tawan 4" />
+      <img src="Tawan5.jpg" alt="Tawan 5" />
+    </div>
+  </div>
+
+  <div class="message-marquee">
+    <span>Thinking of you, P'Tawan.</span>
+  </div>
+
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+  <div class="particle"></div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var music = document.getElementById('background-music');
+    music.play().catch(function (error) {
+      console.log('Autoplay was prevented. Attaching click listener.');
+      document.body.addEventListener(
+        'click',
+        function () {
+          music.play();
+        },
+        { once: true }
+      );
+    });
+  });
+</script>
+</body>
+</html>
